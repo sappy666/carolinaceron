@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  PORTAFOLIO / CV  ·  Carolina Cerón Escobar
+  Estratega en Marketing Digital · Comunicación Visual · Consultora de Marca
+  ----------------------------------------------------------------------------
+  · 100% responsivo (mobile first)
+  · HTML semántico y accesible (WCAG: contraste, foco visible, alt, aria, skip-link)
+  · Sin frameworks: HTML + CSS + JS en un solo archivo
+  · Animaciones suaves (smooth scroll, reveal al hacer scroll, hover en botones/cards)
+  · Respeta "prefers-reduced-motion"
+  ----------------------------------------------------------------------------
+  NOTA PARA EL DESARROLLO:
+  La foto del hero y el "polaroid" del contacto son marcadores (monograma).
+  Reemplaza los bloques marcados con <!-- FOTO --> por una etiqueta <img>
+  cuando tengas la fotografía real de Carolina.
+  ============================================================================
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carolina Cerón Escobar · Marketing Digital & Comunicación Visual</title>
+  <meta name="description" content="Portafolio de Carolina Cerón Escobar, estratega en marketing digital, comunicación visual y consultora de marca con más de 5 años de experiencia. Viña del Mar, Chile." />
+  <meta name="author" content="Carolina Cerón Escobar" />
+
+  <!-- Open Graph para compartir en redes -->
+  <meta property="og:title" content="Carolina Cerón Escobar · Marketing Digital" />
+  <meta property="og:description" content="Estrategia de marca, campañas y comunicación visual con foco en resultados medibles." />
+  <meta property="og:type" content="website" />
+
+  <!-- Tipografías: Anton (display condensado) + Poppins (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ======================================================================
+       1. TOKENS / SISTEMA DE DISEÑO
+       ====================================================================== */
+    :root {
+      /* Paleta morada / lila */
+      --lila-900: #2b0a47;   /* Bloques y secciones oscuras */
+      --lila-800: #3a1560;   /* Superficies oscuras secundarias */
+      --lila-700: #4e1c7d;   /* Tarjetas sobre fondo oscuro */
+      --lila-600: #7a2fb8;   /* Resaltados / hover */
+      --violeta:  #a64dff;   /* Acento vivo (ráfagas, detalles) */
+      --violeta-2:#c77dff;   /* Acento claro */
+      --lila-bg:  #d7b3f0;   /* Fondo lila de página */
+      --lila-bg-2:#e8d0f8;   /* Lila más claro para degradados */
+      --crema:    #f6efe4;   /* Estrella / superficies cálidas */
+      --tinta:    #26103f;   /* Texto sobre fondos claros */
+      --blanco:   #ffffff;
+
+      /* Tipografía */
+      --display: "Anton", "Arial Narrow", sans-serif;
+      --cuerpo:  "Poppins", system-ui, -apple-system, sans-serif;
+
+      /* Layout */
+      --ancho-max: 1120px;
+      --radio: 14px;
+      --radio-lg: 22px;
+
+      /* Movimiento */
+      --trans: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ======================================================================
+       2. RESET / BASE
+       ====================================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px; /* deja aire bajo la nav fija al saltar con anclas */
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--cuerpo);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--tinta);
+      background: var(--lila-bg);
+      /* Degradado lila muy sutil + grano de papel */
+      background-image:
+        radial-gradient(120% 80% at 80% 0%, var(--lila-bg-2) 0%, var(--lila-bg) 55%);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Textura de grano sutil sobre todo el fondo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    /* Foco visible y accesible en todo elemento interactivo (WCAG 2.4.7) */
+    :focus-visible {
+      outline: 3px solid var(--violeta);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Enlace para saltar al contenido (usuarios de teclado / lectores) */
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -60px;
+      z-index: 200;
+      background: var(--lila-900);
+      color: var(--blanco);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: top var(--trans);
+    }
+    .skip-link:focus { top: 12px; }
+
+    /* ======================================================================
+       3. TIPOGRAFÍA
+       ====================================================================== */
+    .display {
+      font-family: var(--display);
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: 0.92;
+      letter-spacing: 0.5px;
+      /* La "cursiva" del look g3studio se logra inclinando la display */
+      transform: skewX(-6deg);
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    .eyebrow {
+      font-family: var(--cuerpo);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--lila-600);
+    }
+
+    /* ======================================================================
+       4. UTILIDADES DE LAYOUT
+       ====================================================================== */
+    .contenedor {
+      width: 100%;
+      max-width: var(--ancho-max);
+      margin-inline: auto;
+      padding-inline: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    section { position: relative; }
+
+    /* Secciones oscuras (bloques morados) */
+    .seccion-oscura {
+      background: var(--lila-900);
+      color: var(--blanco);
+    }
+
+    /* Espaciado vertical consistente entre secciones */
+    .bloque { padding-block: clamp(56px, 9vw, 110px); }
+
+    /* Bloque tipo "sello" (recuadro morado con título en mayúsculas),
+       inspirado en los rótulos de las imágenes de referencia. */
+    .rotulo {
+      display: inline-block;
+      background: var(--lila-900);
+      color: var(--blanco);
+      padding: 10px 22px 14px;
+      border-radius: 6px;
+      transform: skewX(-6deg);
+      box-shadow: 8px 8px 0 rgba(43, 10, 71, 0.22);
+    }
+    .rotulo .display { transform: none; } /* ya se inclina el contenedor */
+    .rotulo.claro {
+      background: var(--crema);
+      color: var(--lila-900);
+    }
+
+    /* Caja de texto resaltado (fondo violeta, texto blanco) */
+    .resaltado {
+      display: inline;
+      background: var(--lila-600);
+      color: var(--blanco);
+      padding: 2px 8px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      border-radius: 3px;
+    }
+
+    /* ======================================================================
+       5. DECORACIÓN: estrellas/ráfagas y bordes de papel rasgado
+       ====================================================================== */
+    .estrella {
+      position: absolute;
+      color: var(--violeta);
+      z-index: 0;
+      pointer-events: none;
+      filter: drop-shadow(4px 5px 0 rgba(43, 10, 71, 0.18));
+    }
+
+    /* Borde de papel rasgado entre secciones (pseudo-elemento decorativo) */
+    .rasgado-abajo::after,
+    .rasgado-arriba::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 34px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 2;
+    }
+    /* Rasgado en la parte inferior, apuntando hacia una sección oscura */
+    .rasgado-abajo::after {
+      bottom: -1px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 34' preserveAspectRatio='none'%3E%3Cpath d='M0 34 L0 14 Q40 4 90 12 T190 10 T300 16 T410 6 T520 15 T640 8 T760 17 T880 7 T1000 15 T1120 9 T1200 14 L1200 34 Z' fill='%232b0a47'/%3E%3C/svg%3E");
+    }
+    /* Rasgado en la parte superior, apuntando hacia una sección clara */
+    .rasgado-arriba::before {
+      top: -1px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 34' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L1200 0 L1200 20 Q1160 30 1110 22 T1010 24 T900 18 T790 28 T680 19 T560 26 T440 17 T320 27 T200 19 T90 25 T0 20 Z' fill='%23d7b3f0'/%3E%3C/svg%3E");
+    }
+
+    /* ======================================================================
+       6. NAVEGACIÓN
+       ====================================================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(43, 10, 71, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--blanco);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 64px;
+    }
+    .marca {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: var(--blanco);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .marca span {
+      background: var(--violeta);
+      color: var(--lila-900);
+      padding: 2px 8px;
+      border-radius: 6px;
+      transform: skewX(-6deg);
+      display: inline-block;
+    }
+
+    .nav__links {
+      list-style: none;
+      display: flex;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav__links a {
+      display: block;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: color var(--trans), background var(--trans);
+    }
+    .nav__links a:hover { color: var(--blanco); background: rgba(255, 255, 255, 0.1); }
+
+    /* Botón hamburguesa (móvil) */
+    .nav__toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--blanco);
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .nav__toggle svg { width: 26px; height: 26px; }
+
+    /* ======================================================================
+       7. HERO / ¿QUIÉN SOY?
+       ====================================================================== */
+    .hero {
+      padding-top: clamp(48px, 8vw, 84px);
+      padding-bottom: clamp(64px, 10vw, 120px);
+    }
+    .hero__grid {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero__title {
+      font-size: clamp(3.1rem, 13vw, 6.4rem);
+      color: var(--blanco);
+      margin: 14px 0 20px;
+    }
+    /* El título va dentro de un bloque morado como en la referencia */
+    .hero__title-wrap {
+      display: inline-block;
+      background: var(--lila-900);
+      padding: 14px 26px 22px;
+      border-radius: 8px;
+      transform: skewX(-6deg);
+      box-shadow: 10px 10px 0 rgba(43, 10, 71, 0.2);
+    }
+    .hero__title-wrap .hero__title { transform: none; margin: 0; }
+
+    .hero__lead {
+      font-size: 1.12rem;
+      max-width: 46ch;
+      margin: 26px 0 30px;
+      color: var(--tinta);
+    }
+    .hero__lead strong { color: var(--lila-700); }
+
+    /* Datos de contacto rápidos (chips) */
+    .chips {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blanco);
+      color: var(--tinta);
+      text-decoration: none;
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      box-shadow: 0 4px 0 rgba(43, 10, 71, 0.14);
+      transition: transform var(--trans), box-shadow var(--trans);
+    }
+    .chip:hover { transform: translateY(-3px); box-shadow: 0 8px 0 rgba(43, 10, 71, 0.16); }
+    .chip svg { width: 17px; height: 17px; color: var(--lila-600); flex: none; }
+
+    /* Estampilla postal (marco perforado) */
+    .estampilla {
+      position: relative;
+      width: min(340px, 82vw);
+      margin-inline: auto;
+      padding: 16px;
+      background: var(--crema);
+      /* Borde perforado tipo sello mediante máscara de círculos */
+      --p: 11px; /* radio de perforación */
+      -webkit-mask:
+        radial-gradient(circle var(--p) at 0% 50%, transparent 98%, #000) 0 0 / 100% 24px,
+        radial-gradient(circle var(--p) at 100% 50%, transparent 98%, #000) 0 0 / 100% 24px,
+        radial-gradient(circle var(--p) at 50% 0%, transparent 98%, #000) 0 0 / 24px 100%,
+        radial-gradient(circle var(--p) at 50% 100%, transparent 98%, #000) 0 0 / 24px 100%;
+      -webkit-mask-composite: source-in;
+      mask:
+        radial-gradient(circle var(--p) at 0% 50%, transparent 98%, #000) 0 0 / 100% 24px,
+        radial-gradient(circle var(--p) at 100% 50%, transparent 98%, #000) 0 0 / 100% 24px,
+        radial-gradient(circle var(--p) at 50% 0%, transparent 98%, #000) 0 0 / 24px 100%,
+        radial-gradient(circle var(--p) at 50% 100%, transparent 98%, #000) 0 0 / 24px 100%;
+      mask-composite: intersect;
+      transform: rotate(3deg);
+      transition: transform var(--trans);
+    }
+    .estampilla:hover { transform: rotate(0deg) scale(1.02); }
+    .estampilla__foto {
+      aspect-ratio: 3 / 4;
+      border-radius: 4px;
+      overflow: hidden;
+      /* Marcador de foto (monograma). Sustituir por <img> real. */
+      background:
+        radial-gradient(circle at 50% 35%, var(--violeta-2), var(--lila-700) 70%);
+      display: grid;
+      place-items: center;
+      color: var(--blanco);
+    }
+    .estampilla__foto .mono {
+      font-family: var(--display);
+      font-size: 4.6rem;
+      transform: skewX(-6deg);
+      opacity: 0.92;
+    }
+    .estampilla__pie {
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lila-700);
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    .estampilla-wrap { position: relative; }
+
+    /* ======================================================================
+       8. BOTONES
+       ====================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform var(--trans), box-shadow var(--trans), background var(--trans);
+    }
+    .btn--primario {
+      background: var(--violeta);
+      color: var(--lila-900);
+      box-shadow: 0 5px 0 var(--lila-700);
+    }
+    .btn--primario:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0 var(--lila-700);
+      background: var(--violeta-2);
+    }
+    .btn--fantasma {
+      background: transparent;
+      color: var(--blanco);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+    }
+    .btn--fantasma:hover { border-color: var(--blanco); background: rgba(255, 255, 255, 0.08); }
+    .btn svg { width: 19px; height: 19px; }
+
+    /* ======================================================================
+       9. SOBRE MÍ
+       ====================================================================== */
+    .sobre__grid {
+      display: grid;
+      gap: 34px;
+    }
+    .sobre__texto p { font-size: 1.08rem; color: rgba(255, 255, 255, 0.9); }
+    .sobre__texto p + p { margin-top: 18px; }
+
+    /* Cifras / destacados */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .stat {
+      background: var(--lila-800);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radio);
+      padding: 22px 20px;
+    }
+    .stat b {
+      display: block;
+      font-family: var(--display);
+      font-size: 2.6rem;
+      color: var(--violeta-2);
+      transform: skewX(-6deg);
+      line-height: 1;
+    }
+    .stat span { font-size: 0.9rem; color: rgba(255, 255, 255, 0.75); }
+
+    /* ======================================================================
+       10. ESPECIALIDADES (¿QUÉ ME APASIONA?)
+       ====================================================================== */
+    .apasiona__grid {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* Estrella crema con el título dentro (como la referencia) */
+    .star-badge {
+      position: relative;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1;
+      width: min(300px, 78vw);
+      margin-inline: auto;
+      color: var(--lila-900);
+      text-align: center;
+    }
+    .star-badge svg.forma {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      color: var(--crema);
+      filter: drop-shadow(8px 10px 0 rgba(43, 10, 71, 0.16));
+    }
+    .star-badge__txt { position: relative; z-index: 1; padding: 22px; }
+    .star-badge__txt .display { font-size: clamp(1.6rem, 6vw, 2.3rem); }
+    .star-badge__txt em {
+      color: var(--lila-600);
+      font-style: normal;
+    }
+
+    /* Lista de especialidades sobre tarjeta oscura */
+    .lista-skills {
+      list-style: none;
+      margin: 0;
+      padding: 26px;
+      background: var(--lila-900);
+      border-radius: var(--radio-lg);
+      box-shadow: 10px 10px 0 rgba(43, 10, 71, 0.18);
+    }
+    .lista-skills li {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 11px 0;
+      color: var(--blanco);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.16);
+    }
+    .lista-skills li:last-child { border-bottom: 0; }
+    .lista-skills .k { font-weight: 700; color: var(--violeta-2); white-space: nowrap; }
+    .lista-skills .dots {
+      flex: 1;
+      border-bottom: 2px dotted rgba(255, 255, 255, 0.3);
+      transform: translateY(-4px);
+      min-width: 18px;
+    }
+    .lista-skills .v { color: rgba(255, 255, 255, 0.9); white-space: nowrap; }
+
+    /* ======================================================================
+       11. EXPERIENCIA (línea de tiempo)
+       ====================================================================== */
+    .timeline {
+      position: relative;
+      margin-top: 44px;
+      padding-left: 26px;
+    }
+    /* Línea vertical */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 3px;
+      background: linear-gradient(var(--violeta), var(--lila-700));
+      border-radius: 3px;
+    }
+    .exp {
+      position: relative;
+      padding: 0 0 34px 26px;
+    }
+    .exp:last-child { padding-bottom: 0; }
+    /* Punto en la línea */
+    .exp::before {
+      content: "";
+      position: absolute;
+      left: -25px;
+      top: 4px;
+      width: 15px;
+      height: 15px;
+      background: var(--violeta);
+      border: 3px solid var(--lila-900);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px var(--violeta);
+    }
+    .exp__fecha {
+      display: inline-block;
+      font-family: var(--display);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      color: var(--violeta-2);
+      background: var(--lila-800);
+      padding: 4px 12px;
+      border-radius: 999px;
+      transform: skewX(-6deg);
+    }
+    .exp__cargo {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      color: var(--blanco);
+      margin: 12px 0 2px;
+      transform: skewX(-6deg);
+    }
+    .exp__rol {
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--violeta-2);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .exp__desc { color: rgba(255, 255, 255, 0.85); font-size: 1rem; }
+    .exp__ref {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-style: italic;
+    }
+
+    /* ======================================================================
+       12. FORMACIÓN (Educación + Certificaciones + Idiomas)
+       ====================================================================== */
+    .grid-tarjetas {
+      display: grid;
+      gap: 22px;
+      margin-top: 40px;
+    }
+    .card {
+      background: var(--blanco);
+      border-radius: var(--radio-lg);
+      padding: 26px;
+      box-shadow: 0 8px 0 rgba(43, 10, 71, 0.1);
+      transition: transform var(--trans), box-shadow var(--trans);
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 0 rgba(43, 10, 71, 0.12); }
+    .card h3 {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      color: var(--lila-900);
+      transform: skewX(-6deg);
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .edu-item { padding: 12px 0; border-bottom: 1px dashed rgba(38, 16, 63, 0.15); }
+    .edu-item:last-child { border-bottom: 0; padding-bottom: 0; }
+    .edu-item b { color: var(--tinta); display: block; }
+    .edu-item span { font-size: 0.9rem; color: var(--lila-700); }
+
+    .lista-check { list-style: none; margin: 0; padding: 0; }
+    .lista-check li {
+      position: relative;
+      padding: 8px 0 8px 28px;
+      color: var(--tinta);
+    }
+    .lista-check li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      background: var(--violeta);
+      border-radius: 3px;
+      transform: rotate(45deg);
+    }
+
+    .idiomas .barra {
+      margin: 14px 0;
+    }
+    .idiomas .barra span { font-weight: 600; display: block; margin-bottom: 6px; }
+    .idiomas .barra .track {
+      height: 12px;
+      background: var(--lila-bg-2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .idiomas .barra .fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--violeta), var(--lila-600));
+      border-radius: 999px;
+      width: 0;
+      transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ======================================================================
+       13. CONTACTO / CTA
+       ====================================================================== */
+    .cta { text-align: center; overflow: hidden; }
+    .cta__pre { color: rgba(255, 255, 255, 0.8); font-size: 1.15rem; margin-bottom: 18px; }
+    .cta__title {
+      font-size: clamp(2.4rem, 9vw, 5rem);
+      color: var(--blanco);
+      line-height: 0.95;
+    }
+    .cta__title .linea {
+      display: inline-block;
+      background: var(--lila-800);
+      padding: 8px 22px 14px;
+      border-radius: 8px;
+      margin: 6px 0;
+    }
+    .cta__acciones {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    /* ======================================================================
+       14. FOOTER
+       ====================================================================== */
+    .footer {
+      background: var(--lila-900);
+      color: rgba(255, 255, 255, 0.7);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-block: 34px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .footer .redes {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .footer .redes a {
+      width: 42px; height: 42px;
+      display: grid; place-items: center;
+      background: var(--lila-800);
+      border-radius: 50%;
+      color: var(--blanco);
+      transition: transform var(--trans), background var(--trans);
+    }
+    .footer .redes a:hover { transform: translateY(-3px); background: var(--violeta); color: var(--lila-900); }
+    .footer .redes svg { width: 20px; height: 20px; }
+
+    /* ======================================================================
+       15. ANIMACIONES DE REVELADO AL HACER SCROLL
+       ====================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ======================================================================
+       16. RESPONSIVE — MOBILE FIRST (se amplía en pantallas grandes)
+       ====================================================================== */
+    @media (min-width: 760px) {
+      .hero__grid { grid-template-columns: 1.15fr 0.85fr; }
+      .sobre__grid { grid-template-columns: 1.3fr 0.7fr; align-items: start; }
+      .apasiona__grid { grid-template-columns: 0.8fr 1.2fr; }
+      .grid-tarjetas { grid-template-columns: repeat(2, 1fr); }
+      .grid-tarjetas .card--ancha { grid-column: 1 / -1; }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-tarjetas { grid-template-columns: repeat(3, 1fr); }
+      .grid-tarjetas .card--ancha { grid-column: auto; }
+    }
+
+    /* Menú móvil: se colapsa bajo 760px */
+    @media (max-width: 759px) {
+      .nav__toggle { display: inline-flex; }
+      .nav__links {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        flex-direction: column;
+        gap: 2px;
+        background: var(--lila-900);
+        padding: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        /* Oculto por defecto, animado */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 320ms ease;
+      }
+      .nav__links.abierto { max-height: 360px; }
+      .nav__links a { padding: 12px; }
+    }
+
+    /* ======================================================================
+       17. ACCESIBILIDAD: reducir movimiento
+       ====================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Salto rápido al contenido para teclado / lectores de pantalla -->
+  <a href="#inicio" class="skip-link">Saltar al contenido</a>
+
+  <!-- ====================== NAVEGACIÓN ====================== -->
+  <header class="nav">
+    <div class="contenedor nav__inner">
+      <a href="#inicio" class="marca" aria-label="Carolina Cerón Escobar, inicio">
+        <span>CCE</span> Carolina Cerón
+      </a>
+
+      <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" />
+        </svg>
+      </button>
+
+      <nav aria-label="Navegación principal">
+        <ul class="nav__links" id="menu">
+          <li><a href="#sobre">Sobre mí</a></li>
+          <li><a href="#especialidades">Especialidades</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#formacion">Formación</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ====================== HERO / ¿QUIÉN SOY? ====================== -->
+    <section class="hero bloque rasgado-abajo" aria-labelledby="hero-title">
+      <!-- Estrella decorativa -->
+      <svg class="estrella" style="top: 8%; right: 6%; width: 74px;" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="currentColor" d="M50 0l11 28 30-13-16 28 28 7-28 7 16 28-30-13-11 28-11-28-30 13 16-28-28-7 28-7-16-28 30 13z"/>
+      </svg>
+
+      <div class="contenedor hero__grid">
+        <div>
+          <p class="eyebrow">Digital design · Viña del Mar, Chile</p>
+          <div class="hero__title-wrap">
+            <h1 class="hero__title display" id="hero-title">¿Quién<br>soy?</h1>
+          </div>
+
+          <p class="hero__lead">
+            Hola, soy <strong>Carolina Cerón Escobar</strong>. Estratega en
+            marketing digital, comunicación visual y consultora de marca con
+            <strong>más de 5 años</strong> creando presencia, campañas y
+            crecimiento medible para marcas.
+          </p>
+
+          <!-- Contacto rápido -->
+          <ul class="chips">
+            <li>
+              <a class="chip" href="mailto:carolinaceronescobar@gmail.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                carolinaceronescobar@gmail.com
+              </a>
+            </li>
+            <li>
+              <a class="chip" href="tel:+56963400315">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg>
+                (56) 9634-00315
+              </a>
+            </li>
+            <li>
+              <span class="chip" aria-label="Ubicación">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                4 Norte #1070, Viña del Mar
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Estampilla con foto (marcador) -->
+        <div class="estampilla-wrap">
+          <svg class="estrella" style="bottom: -4%; left: -6%; width: 62px;" viewBox="0 0 100 100" aria-hidden="true">
+            <path fill="currentColor" d="M50 0l11 28 30-13-16 28 28 7-28 7 16 28-30-13-11 28-11-28-30 13 16-28-28-7 28-7-16-28 30 13z"/>
+          </svg>
+          <figure class="estampilla">
+            <!-- FOTO: reemplazar el div .estampilla__foto por:
+                 <img src="ruta/foto.jpg" alt="Retrato de Carolina Cerón Escobar" class="estampilla__foto"> -->
+            <div class="estampilla__foto" role="img" aria-label="Retrato de Carolina Cerón Escobar">
+              <span class="mono" aria-hidden="true">CC</span>
+            </div>
+            <figcaption class="estampilla__pie">Marketing · Marca · Visual</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== SOBRE MÍ ====================== -->
+    <section id="sobre" class="seccion-oscura bloque" aria-labelledby="sobre-title">
+      <div class="contenedor">
+        <div class="rotulo reveal">
+          <h2 class="display" id="sobre-title" style="font-size: clamp(2rem, 7vw, 3rem);">Sobre mí</h2>
+        </div>
+
+        <div class="sobre__grid" style="margin-top: 34px;">
+          <div class="sobre__texto reveal">
+            <p>
+              Profesional en marketing digital, estrategia de marca y comunicación
+              visual liderando proyectos de crecimiento y posicionamiento en
+              entornos digitales. Me especializo en
+              <span class="resaltado">estrategias creativas</span>, campañas
+              publicitarias y dirección de equipos multidisciplinarios, con foco
+              en resultados medibles y mejora continua.
+            </p>
+            <p>
+              Además, tengo una sólida capacidad de adaptación y liderazgo humano
+              que me permite asumir roles de reemplazo o apoyo estratégico en
+              ventas, planificación, atención al cliente, compras o community
+              management. Busco integrarme a una organización que valore la
+              <span class="resaltado">creatividad, la empatía y los resultados</span>.
+            </p>
+          </div>
+
+          <ul class="stats reveal">
+            <li class="stat"><b>+5</b><span>años de experiencia</span></li>
+            <li class="stat"><b>+20</b><span>marcas asesoradas</span></li>
+            <li class="stat"><b>287</b><span>seguidores orgánicos de cero</span></li>
+            <li class="stat"><b>B2B<br>B2C</b><span>ventas digitales</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== ESPECIALIDADES ====================== -->
+    <section id="especialidades" class="bloque rasgado-arriba rasgado-abajo" aria-labelledby="esp-title">
+      <div class="contenedor apasiona__grid">
+        <!-- Estrella con título -->
+        <div class="star-badge reveal">
+          <svg class="forma" viewBox="0 0 100 100" aria-hidden="true">
+            <path fill="currentColor" d="M50 2l9 20 21-10-9 21 22 4-19 12 15 17-22-6-3 22-14-17-14 17-3-22-22 6 15-17-19-12 22-4-9-21 21 10z"/>
+          </svg>
+          <div class="star-badge__txt">
+            <p class="display" id="esp-title">¿Qué me<br><em>apasiona?</em></p>
+          </div>
+        </div>
+
+        <!-- Lista de especialidades (formato de la referencia) -->
+        <ul class="lista-skills reveal" aria-label="Áreas de especialidad">
+          <li><span class="k">Branding</span><span class="dots" aria-hidden="true"></span><span class="v">Identidad de marca</span></li>
+          <li><span class="k">Marketing</span><span class="dots" aria-hidden="true"></span><span class="v">Estrategia digital</span></li>
+          <li><span class="k">Redes sociales</span><span class="dots" aria-hidden="true"></span><span class="v">Community management</span></li>
+          <li><span class="k">Copywriting</span><span class="dots" aria-hidden="true"></span><span class="v">Comercial &amp; creativo</span></li>
+          <li><span class="k">Campañas</span><span class="dots" aria-hidden="true"></span><span class="v">Publicidad &amp; ads</span></li>
+          <li><span class="k">Análisis</span><span class="dots" aria-hidden="true"></span><span class="v">Métricas &amp; KPIs</span></li>
+          <li><span class="k">E-commerce</span><span class="dots" aria-hidden="true"></span><span class="v">Shopify</span></li>
+          <li><span class="k">Web &amp; UX/UI</span><span class="dots" aria-hidden="true"></span><span class="v">HTML5 · CSS · React</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================== EXPERIENCIA ====================== -->
+    <section id="experiencia" class="seccion-oscura bloque" aria-labelledby="exp-title">
+      <div class="contenedor">
+        <div class="rotulo reveal">
+          <h2 class="display" id="exp-title" style="font-size: clamp(2rem, 7vw, 3rem);">Experiencia</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="exp reveal">
+            <span class="exp__fecha">2024 — Hoy</span>
+            <h3 class="exp__cargo">Zona Color</h3>
+            <p class="exp__rol">Consultora en marketing digital y comunicación estratégica</p>
+            <p class="exp__desc">
+              Creación de campañas en redes sociales, asesoría en identidad de
+              marca, copywriting comercial y comunicación visual. Administración
+              de sitio web en Shopify y análisis de métricas digitales.
+            </p>
+            <span class="exp__ref">Recomendación: Carlos Jadue — Dueño de Zona Color</span>
+          </article>
+
+          <article class="exp reveal">
+            <span class="exp__fecha">2023 — 2024</span>
+            <h3 class="exp__cargo">U. Técnica Federico Santa María</h3>
+            <p class="exp__rol">Desarrolladora front-end (proyecto académico)</p>
+            <p class="exp__desc">
+              Desarrollo de entorno React + TypeScript, backend Django y base de
+              datos en DBeaver. Participación en proyectos interdisciplinarios
+              aplicando principios de UX/UI.
+            </p>
+          </article>
+
+          <article class="exp reveal">
+            <span class="exp__fecha">2021 — 2023</span>
+            <h3 class="exp__cargo">A. Marshall Moffat Ltda.</h3>
+            <p class="exp__rol">Encargada de marketing digital, ventas digitales y planificación</p>
+            <p class="exp__desc">
+              Lideré la digitalización comercial y ventas B2B/B2C, creando la
+              presencia online de cero a 287 seguidores orgánicos. Implementé un
+              proyecto de cultura organizacional (videos semanales) que fortaleció
+              el branding y la cultura de trabajo. Coordiné planificación
+              administrativa y producción visual.
+            </p>
+            <span class="exp__ref">Recomendación: Víctor Arancibia — Gerente General, Marshall Moffat Chile Ltda.</span>
+          </article>
+
+          <article class="exp reveal">
+            <span class="exp__fecha">2018 — Hoy</span>
+            <h3 class="exp__cargo">Hoy Empresas</h3>
+            <p class="exp__rol">Fundadora y directora de marketing</p>
+            <p class="exp__desc">
+              Creación y liderazgo de agencia digital enfocada en microempresas.
+              Desarrollo de estrategias de marketing, branding y copywriting
+              comercial. Asesoramiento directo a más de 20 marcas locales,
+              mejorando su visibilidad y fidelización.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== FORMACIÓN ====================== -->
+    <section id="formacion" class="bloque rasgado-arriba rasgado-abajo" aria-labelledby="form-title">
+      <div class="contenedor">
+        <p class="eyebrow reveal">Educación · Certificaciones · Idiomas</p>
+        <h2 class="display reveal" id="form-title" style="font-size: clamp(2.2rem, 8vw, 3.6rem); color: var(--lila-900); margin-top: 6px;">Formación</h2>
+
+        <div class="grid-tarjetas">
+          <!-- Educación -->
+          <article class="card reveal">
+            <h3>Educación</h3>
+            <div class="edu-item">
+              <b>Diplomado en Diseño Web y UX/UI</b>
+              <span>AIEP · 2024–2025</span>
+            </div>
+            <div class="edu-item">
+              <b>Desarrollo de Apps Móviles Android</b>
+              <span>Adalid · 2024</span>
+            </div>
+            <div class="edu-item">
+              <b>Fullstack Java Trainee</b>
+              <span>UNAB · 2023</span>
+            </div>
+            <div class="edu-item">
+              <b>Ing. en Administración de Empresas</b>
+              <span>IACC · 2014–2019 · Titulada</span>
+            </div>
+            <div class="edu-item">
+              <b>Psicopedagogía</b>
+              <span>UNAB · 2006–2009 · Inconclusa</span>
+            </div>
+          </article>
+
+          <!-- Certificaciones -->
+          <article class="card reveal">
+            <h3>Certificaciones</h3>
+            <ul class="lista-check">
+              <li>Marketing Online: creación de calendario editorial</li>
+              <li>Fundamentos de SEO</li>
+              <li>E-commerce y estrategias de marketing digital</li>
+              <li>Diseño web con HTML5 y CSS</li>
+              <li>Tecnologías de marketing integradas</li>
+            </ul>
+          </article>
+
+          <!-- Idiomas -->
+          <article class="card reveal idiomas">
+            <h3>Idiomas</h3>
+            <div class="barra">
+              <span>Español · Nativo</span>
+              <div class="track"><div class="fill" data-nivel="100%"></div></div>
+            </div>
+            <div class="barra">
+              <span>Inglés · Intermedio</span>
+              <div class="track"><div class="fill" data-nivel="65%"></div></div>
+            </div>
+            <div class="barra">
+              <span>Francés · Básico</span>
+              <div class="track"><div class="fill" data-nivel="35%"></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CONTACTO / CTA ====================== -->
+    <section id="contacto" class="seccion-oscura bloque cta" aria-labelledby="cta-title">
+      <!-- Estrellas decorativas -->
+      <svg class="estrella" style="top: 12%; right: 10%; width: 66px;" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="currentColor" d="M50 0l11 28 30-13-16 28 28 7-28 7 16 28-30-13-11 28-11-28-30 13 16-28-28-7 28-7-16-28 30 13z"/>
+      </svg>
+      <svg class="estrella" style="bottom: 14%; left: 8%; width: 48px;" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="currentColor" d="M50 0l11 28 30-13-16 28 28 7-28 7 16 28-30-13-11 28-11-28-30 13 16-28-28-7 28-7-16-28 30 13z"/>
+      </svg>
+
+      <div class="contenedor">
+        <p class="cta__pre reveal">Ahora que me conoces un poco más…</p>
+        <h2 class="cta__title display reveal" id="cta-title">
+          <span class="linea">¡Creemos algo</span><br>
+          <span class="linea">increíble juntos!</span>
+        </h2>
+
+        <div class="cta__acciones reveal">
+          <a class="btn btn--primario" href="mailto:carolinaceronescobar@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Escríbeme un correo
+          </a>
+          <a class="btn btn--fantasma" href="https://wa.me/56963400315" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="footer">
+    <div class="contenedor">
+      <div class="redes">
+        <a href="mailto:carolinaceronescobar@gmail.com" aria-label="Enviar correo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+        <a href="tel:+56963400315" aria-label="Llamar por teléfono">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg>
+        </a>
+        <a href="https://wa.me/56963400315" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.9.9c.2.1.4.2.4.3.1.2.1.7-.1 1.4Z"/></svg>
+        </a>
+      </div>
+      <p>© <span id="year"></span> Carolina Cerón Escobar · Marketing Digital &amp; Comunicación Visual · Viña del Mar, Chile</p>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       JAVASCRIPT
+       ====================================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* --- Año dinámico en el footer --- */
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      /* --- Menú móvil (hamburguesa) con estado accesible --- */
+      var toggle = document.querySelector(".nav__toggle");
+      var menu = document.getElementById("menu");
+
+      toggle.addEventListener("click", function () {
+        var abierto = menu.classList.toggle("abierto");
+        toggle.setAttribute("aria-expanded", String(abierto));
+        toggle.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+      });
+
+      /* Cerrar el menú al elegir un enlace (en móvil) */
+      menu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          menu.classList.remove("abierto");
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Abrir menú");
+        });
+      });
+
+      /* --- Revelado suave al hacer scroll (IntersectionObserver) --- */
+      var elementos = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+
+              /* Animar las barras de idioma al aparecer */
+              e.target.querySelectorAll(".fill").forEach(function (f) {
+                f.style.width = f.getAttribute("data-nivel");
+              });
+
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.16, rootMargin: "0px 0px -40px 0px" });
+
+        elementos.forEach(function (el) { io.observe(el); });
+      } else {
+        /* Sin soporte: mostrar todo directamente */
+        elementos.forEach(function (el) {
+          el.classList.add("visible");
+          el.querySelectorAll(".fill").forEach(function (f) {
+            f.style.width = f.getAttribute("data-nivel");
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
