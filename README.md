@@ -1,83 +1,72 @@
 <div align="center">
-  <!-- Encabezado / Branding -->
+
+  <!-- Header Banner -->
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td bgcolor="#2b1147" style="padding: 15px 25px; border-radius: 10px;">
-        <h3 align="left" style="color: #ffffff; margin: 0;">
-          <span bgcolor="#9333ea" style="padding: 3px 8px; border-radius: 5px; color: #fff;">CCE</span> 
-          Carolina Cerón — Portfolio & Brand Identity
-        </h3>
+      <td bgcolor="#2b1147" align="center" style="padding: 25px 20px; border-radius: 12px;">
+        <h1 style="color: #ffffff; margin: 0; font-family: sans-serif; font-size: 26px;">
+          💜 Landing Page - Carolina Cerón
+        </h1>
+        <p style="color: #d8b4fe; margin: 8px 0 0 0; font-family: sans-serif; font-size: 14px;">
+          Diseño Web & Identidad de Marca en Marketing Digital
+        </p>
       </td>
     </tr>
   </table>
-</div>
 
-<br>
+  <br>
 
-<!-- Hero Section -->
-<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#e5d4ed" style="border-radius: 12px; padding: 20px;">
-  <tr>
-    <td width="60%" valign="top">
-      <p style="color: #4c1d95; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; margin-bottom: 5px;">
-        DIGITAL DESIGN · VIÑA DEL MAR, CHILE
-      </p>
-      <h1>
-        <span bgcolor="#2b1147" style="color: #ffffff; padding: 6px 16px; border-radius: 8px; font-size: 28px;">
-          ¿QUIÉN SOY?
-        </span>
-      </h1>
-      <p style="color: #1f1135; font-size: 15px; line-height: 1.5; margin-top: 15px;">
-        Hola, soy <strong>Carolina Cerón Escobar</strong>. Estratega en marketing digital, comunicación visual y consultora de marca con <strong>más de 5 años</strong> creando presencia, campañas y crecimiento medible para marcas.
-      </p>
-      <br>
-      <!-- Contact Badges -->
-      <p>
-        <a href="mailto:carolinaceronescobar@gmail.com">
-          <img src="https://img.shields.io/badge/Email-carolinaceronescobar%40gmail.com-4c1d95?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
-        </a>
-        <a href="tel:+56963400315">
-          <img src="https://img.shields.io/badge/Tel%C3%A9fono-(56)%209634--00315-9333ea?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Contacto">
-        </a>
-        <br><br>
-        <img src="https://img.shields.io/badge/Ubicaci%C3%B3n-4%20Norte%20%231070%2C%20Vi%C3%B1a%20del%20Mar-2b1147?style=for-the-badge&logo=googlemaps&logoColor=white" alt="Ubicación">
-      </p>
-    </td>
-    <td width="40%" align="center" valign="middle">
-      <!-- Stamp Photo Frame Placeholder -->
-      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff" style="border: 2px dashed #9333ea; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <tr>
-          <td align="center">
-            <img src="image_a73d1a.jpg" alt="Carolina Cerón Preview" width="220" style="border-radius: 4px;">
-            <p style="color: #4c1d95; font-size: 11px; font-weight: bold; letter-spacing: 2px; margin-top: 8px; margin-bottom: 0;">
-              MARKETING · MARCA · VISUAL
-            </p>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
+  <!-- Main Hero Card -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#e5d4ed" style="border-radius: 12px;">
+    <tr>
+      <td style="padding: 30px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <!-- Left Info -->
+            <td width="60%" valign="top">
+              <p style="color: #4c1d95; font-size: 11px; font-weight: bold; letter-spacing: 2px; margin: 0 0 10px 0; font-family: sans-serif;">
+                SOBRE EL PROYECTO
+              </p>
+              <h2 style="color: #2b1147; font-size: 22px; margin: 0 0 15px 0; font-family: sans-serif;">
+                📌 Portafolio Web Personal
+              </h2>
+              <p style="color: #1f1135; font-size: 15px; line-height: 1.6; margin: 0 0 20px 0; font-family: sans-serif;">
+                Este proyecto consiste en el diseño y desarrollo de una <b>landing page moderna y atractiva</b> para <b>Carolina Cerón</b>, estratega en marketing digital, comunicación visual y consultora de marca radicada en Viña del Mar, Chile.
+              </p>
+              <p style="color: #1f1135; font-size: 14px; line-height: 1.6; margin: 0; font-family: sans-serif;">
+                El sitio destaca por una paleta de colores en tonos lilas y morados, elementos gráficos estilo sellos/polaroid, tipografía moderna y una estructura limpia enfocada en presentar sus servicios de consultoría, experiencia y vías de contacto.
+              </p>
+            </td>
+            <!-- Right Image Preview -->
+            <td width="40%" align="center" valign="middle" style="padding-left: 20px;">
+              <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff" style="border: 2px dashed #9333ea; border-radius: 10px;">
+                <tr>
+                  <td align="center">
+                    <img src="image_a73d1a.jpg" alt="Preview del Proyecto" width="220" style="border-radius: 6px; display: block;">
+                    <p style="color: #4c1d95; font-size: 10px; font-weight: bold; letter-spacing: 1.5px; margin: 8px 0 0 0; font-family: sans-serif;">
+                      MARKETING · MARCA · VISUAL
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 
-<br>
+  <br><br>
 
-<!-- Módulos / Especialidades -->
-## 🌟 Especialidades & Servicios
-
-- 🎯 **Estrategia de Marketing Digital**: Planificación de campañas con metas y crecimiento medible.
-- 🎨 **Comunicación Visual**: Creación de identidades de marca sólidas y atractivas.
-- 💼 **Consultoría de Marca**: Asesoría personalizada para potenciar el posicionamiento en el mercado.
-
----
-
-<!-- Créditos -->
-<div align="center">
-  <p style="font-size: 14px; color: #4c1d95;">
-    Diseñado y desarrollado con ❤️ por 
-    <a href="https://www.behance.net/macarenaramdohr" target="_blank">
-      <b>Macarena Ramdohr</b>
-    </a>
+  <!-- Signature / Credits -->
+  <hr style="border: 0; height: 1px; background: #d8b4fe; margin: 20px 0;">
+  
+  <p style="font-family: sans-serif; font-size: 15px; color: #2b1147; margin-bottom: 12px;">
+    ✨ Hecho con ❤️ por <b>Macarena Ramdohr</b>
   </p>
-  <a href="https://www.behance.net/macarenaramdohr" target="_blank">
-    <img src="https://img.shields.io/badge/Behance-Macarena%20Ramdohr-1769ff?style=for-the-badge&logo=behance&logoColor=white" alt="Behance de Macarena Ramdohr">
+
+  <a href="https://www.behance.net/macarenaramdohr" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Behance-Macarena%20Ramdohr-1769ff?style=for-the-badge&logo=behance&logoColor=white" alt="Behance Macarena Ramdohr">
   </a>
+
 </div>
